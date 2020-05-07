@@ -55,13 +55,13 @@ private:
 vector<int> Triangular::_elems;
 //对于const紧随与函数参数列表之后，凡是class主体外定义者，必须同时在声明与定义后面都指定const
 int Triangular::elem(int pos)const
-{  
+{   
 	if (pos < 0) {
 		cerr << "exception!" << endl;
 		exit(-1);
 	}
 	return _elems[pos - 1];
-}
+}  
 
 
 /***************************初始化的坑-begin**********************************************/
