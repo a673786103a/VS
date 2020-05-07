@@ -1,0 +1,115 @@
+
+//做一下替换  
+
+//①
+copy_if(vecP.begin(), vecP.end(), back_inserter(vecRet), bind2nd(person_filter_func(), "ro"));
+
+//②
+bind2nd(person_filter_func(), "ro");
+
+_Fn = person_filter_func
+_Ty = string
+	// FUNCTION TEMPLATE bind2nd
+template<class _Fn,
+	class _Ty>
+	 inline binder2nd<person_filter_func> bind2nd(const person_filter_func& _Func, const string& _Right)
+	{	// return a binder2nd functor adapter
+		string _Val(_Right);
+		//_Val是string类型的对象
+		return (binder2nd(_Func, _Val));	//③
+	}
+	
+	
+_Arg1 = person
+_Arg2 = string
+_Result = bool
+		// STRUCT TEMPLATE binary_function
+template<class _Arg1,
+	class _Arg2,
+	class _Result>
+	struct binary_function
+	{	// base class for binary functions
+	typedef person first_argument_type;
+	typedef string second_argument_type;
+	typedef bool result_type;
+	};	
+	
+	
+	
+	
+	
+	
+_Arg = person_filter_func
+_Result = bool	
+template<class _Arg,class _Result>
+struct unary_function
+{	// base class for unary functions
+	typedef _Arg argument_type;
+	typedef _Result result_type;
+};	
+
+	
+//③
+binder2nd(person_filter_func(), "ro")	
+
+
+_Fn = person_filter_func
+template<class _Fn>
+class binder2nd: public unary_function<person,bool>
+{	
+
+	protected:
+		person_filter_func op;	// the functor to apply
+		string value;	// the right operand
+		
+	// functor adapter _Func(left, stored)
+	public:
+		typedef unary_function<person,bool> _Base;
+		typedef typename person_filter_func argument_type;
+		typedef typename bool result_type;
+
+	binder2nd(const person_filter_func& _Func,const string& _Right)
+		: op(_Func), value(_Right)
+	{	// construct from functor and right operand
+	}
+	/**********************begin***********************************/
+	//为函数对象做准备   
+	bool operator()(const person_filter_func& _Left) const
+	{	// apply functor to operands
+		return (op(_Left, value));
+	}
+
+	bool operator()(person_filter_func& _Left) const
+	{	// apply functor to operands
+		return (op(_Left, value));
+	}
+	/**********************end***********************************/
+};
+
+
+
+
+_InIt = vector<person>
+_OutIt = vector<person>
+_Pr = binder2nd
+
+template<class _InIt,class _OutIt,class _Pr> 
+inline vector<person> copy_if(vector<person> _First, vector<person> _Last, vector<person> _Dest, binder2nd _Pred)
+	{	// copy each satisfying _Pred
+	_Adl_verify_range(_First, _Last);
+	auto _UFirst = _Get_unwrapped(_First);
+	const auto _ULast = _Get_unwrapped(_Last);
+	auto _UDest = _Get_unwrapped_unverified(_Dest);
+	for (; _UFirst != _ULast; ++_UFirst)
+		{
+			//调用函数对象   在begin-end的注释中  为什么有两个版本？
+		if (_Pred(*_UFirst))
+			{
+			*_UDest = *_UFirsdt;
+			++_UDest;
+			}
+		}
+
+	_Seek_wrapped(_Dest, _UDest);
+	return (_Dest);
+	}

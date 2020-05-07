@@ -1,0 +1,33 @@
+1.什么条件下可以访问私有成员函数？
+2.成员函数定义在类内和类外有什么区别？
+
+3.
+class Triangular {
+public:
+	Triangular() {
+
+	}
+	Triangular(int len = 1) {
+
+	}
+	Triangular(int len, int begin);
+private:
+	int length;		//元素数目
+	int beginPos;	//起始位置
+	int next;		//下一个迭代目标
+};
+
+
+int main()
+{
+	//E0339	类 "Triangular" 包含多个默认构造函数	程风格\essential_C++.cpp	26	13		Intellisense		Visual C++ IntelliSense
+	Triangular t;
+	return 0;
+}
+
+4.C++编程最难的部分之一，是了解何时需要定义destructor而何时不需要。
+5.const可以作为重载判断。
+6.
+在类内需要这样写
+	//static const int size = 10;	//	OK
+	//int a[size];					//	OK
