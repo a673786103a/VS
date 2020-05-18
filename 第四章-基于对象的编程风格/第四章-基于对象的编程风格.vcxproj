@@ -115,7 +115,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="essential_C++.cpp" />
+    <ClCompile Include="Triangular.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Triangular_iterator.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Triangular.h" />
+    <ClInclude Include="Triangular_iterator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

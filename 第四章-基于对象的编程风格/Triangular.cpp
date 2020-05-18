@@ -1,58 +1,11 @@
-#include <vector>
-#include <stack>
-#include <algorithm>
-#include <string>
+
 #include <iostream>
+#include "Triangular.h"
 using namespace std;
 
-/*Triangular tri(8,3)		
-  Triangular tri(10)
-*/
-class Triangular {
-public:
-	Triangular() {	}
-//	Triangular(int len) {	}
-	Triangular(int len, int begin = 1) {
-		//永远不要相信“用户是对的”这句话
-		_length = len > 0 ? len : 1;
-		_beg_pos = begin > 0 ? begin : 1;
-		_next = _beg_pos - 1;	//用户从1开始，但是程序从0开始
-	}
-	int length()const { return _length; }
-	int beg_pos() const { return _beg_pos; }
-	int elem(int pos)const;
 
-	//当变量用mutable加以修饰的时候，函数既可以声明为const,又可以修改_next的值了
-	bool next(int& value) const {
-		if (_next < _beg_pos + _length - 1) {
-			value = _elems[_next++];
-			return true;
-		}
-		return false;
-	}
-	void next_reset()const {
-		_next = _beg_pos - 1;
-	}
-	
-	Triangular& copy(Triangular& rhs) {
-		//先检查两个对象是否相同是一个好习惯
-		if (this != &rhs) {
-			_length = rhs._length;
-			_beg_pos = rhs._beg_pos;
-			_next = rhs._beg_pos - 1;
-		}
-		
-		return *this;
-	}
-private:
-	int _length;		//元素数目
-	int _beg_pos;		//起始位置
-	mutable int _next;		//下一个迭代目标。 // mutable表示改变此变量不会改变类对象的“常数性”
-	static vector<int> _elems;
-	//static const int size = 10;	//	OK
-	//int a[size];					//	OK
-};
-vector<int> Triangular::_elems;
+vector<int> Triangular::_elems;		//静态成员需要类外定义
+
 //对于const紧随与函数参数列表之后，凡是class主体外定义者，必须同时在声明与定义后面都指定const
 int Triangular::elem(int pos)const
 {   
@@ -62,8 +15,6 @@ int Triangular::elem(int pos)const
 	}
 	return _elems[pos - 1];
 }  
-
-
 /***************************初始化的坑-begin**********************************************/
 class Matrix {
 public:
@@ -88,7 +39,7 @@ public:
 	}
 private:
 	int row, col;
-	double* pmat;
+	double* pmat;	//类内有指针变量，在进行拷贝操作的时候要注意。
 };
 //1.成员逐一初始化
 void test01() {
@@ -104,7 +55,7 @@ void test01() {
 
 
 
-/***************************mtable和const - begin***************************************/
+/***************************mutable和const - begin***************************************/
 int sum(const Triangular& tr) {
 	if (!tr.length())
 		return 0;
@@ -119,7 +70,7 @@ int sum(const Triangular& tr) {
 void test02() {
 	Triangular tri(4);
 }
-/***************************mtable和const - end*******************************************/
+/***************************mutable和const - end*******************************************/
 
 
 /*****************************this指针-begin********************************************/
@@ -128,11 +79,23 @@ void test03() {
 	t1.copy(t2);	//  <---> copy(&t1,t2);
 }
 /*****************************this指针-end************************************************/
-int main()
-{
-	test01();
 
-
-	system("pause");
-	return 0;
+/*****************************测试is_elems静态成员函数 -begin******************************************/
+void test04() {
+	Triangular::gen_elem_to_value(10000000);
+	Triangular::display();
+	char ch;
+	bool more = true;
+	while (more) {
+		cout << "Enter value:";
+		int ival;	cin >> ival;
+		bool is_elem = Triangular::is_elem(ival);
+		cout << ival << (is_elem ? "  is" : "is not ") << "an element in the Triangular series. \n" << "Another value?(y/n)";
+		cin >> ch;
+		if (ch == 'n' || ch == 'N')
+			more = false;
+	}
+	
 }
+/*****************************测试is_elems静态成员函数 -end******************************************/
+
