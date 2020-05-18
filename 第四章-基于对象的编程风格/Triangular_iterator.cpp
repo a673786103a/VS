@@ -1,6 +1,5 @@
-#include "Triangular_iterator.h"
-
-
+//#include "Triangular_iterator.h"		为什么包含这个头文件不行？
+#include "Triangular.h"
 
 Triangular_iterator::Triangular_iterator()
 {
@@ -20,7 +19,7 @@ inline int Triangular_iterator::operator*()const {
 }
 inline void Triangular_iterator::check_intergriry() const {
 	if (_index >= Triangular::max_elems())
-		//
+		//异常处理
 		exit(-1);
 		//throw ietrator_overflow();
 
@@ -44,13 +43,16 @@ inline Triangular_iterator Triangular_iterator::operator++(int) {
 
 /********************测试iterator class-begin**********************************/
 void test05() {
-	Triangular tri(20, 12);
+	Triangular tri(5, 2);
 	Triangular::iterator it = tri.begin();
 	Triangular::iterator end_it = tri.end();
+
 	while (it != end_it) {
-		cout << *it << " ";
+		//cout << (*it) << " ";
+		cout << (it.operator *()) << " ";
 		++it;
 	}
 	cout << endl;
+	
 }
 /********************测试iterator class-end**********************************/

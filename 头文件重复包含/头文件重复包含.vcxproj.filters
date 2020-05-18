@@ -18,30 +18,18 @@
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Triangular.cpp">
+    <ClCompile Include="A.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Triangular_iterator.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Matrix.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="LessThan.cpp">
+    <ClCompile Include="B.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Triangular.h">
+    <ClInclude Include="A.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Triangular_iterator.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Matrix.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="LessThan.h">
+    <ClInclude Include="B.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

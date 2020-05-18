@@ -15,43 +15,6 @@ int Triangular::elem(int pos)const
 	}
 	return _elems[pos - 1];
 }  
-/***************************初始化的坑-begin**********************************************/
-class Matrix {
-public:
-	Matrix(int row, int col) :row(row), col(col) {
-		pmat = new double[row*col];
-	}
-	//①“初始化”一定调用的是这个，不是opeator=  注意区分“初始化”和“赋值”
-	Matrix(const Matrix& m):row(m.row),col(m.col) {
-		pmat = new double[row*col];
-		for (int i = 0; i < row*col; i++) {
-			pmat[i] = m.pmat[i];		
-		}
-	}
-	Matrix& operator=(const Matrix& m) {
-		pmat = new double[row*col];
-		for (int i = 0; i < row*col; i++) {
-			pmat[i] = m.pmat[i];
-		}
-	}
-	~Matrix(){
-		delete[]pmat;
-	}
-private:
-	int row, col;
-	double* pmat;	//类内有指针变量，在进行拷贝操作的时候要注意。
-};
-//1.成员逐一初始化
-void test01() {
-	{
-		Matrix mat(4, 4);
-		//代码块
-		{
-			Matrix mat2 = mat;	//default member initialization,使得两个对象的pamt指针指向同一块heap，第一次释放没问题，第二次对已经释放的内存进行操作，很危险。怎么解决？  见①处
-		}	//此处,mat2的destructor发生作用
-	}//此处，mat的destructor发生作用
-}
-/****************************初始化的坑-end**********************************************/
 
 
 
@@ -99,3 +62,28 @@ void test04() {
 }
 /*****************************测试is_elems静态成员函数 -end******************************************/
 
+ostream& operator<<(ostream& os, const Triangular& rhs) {
+	os << "(" << rhs.beg_pos() << "," << rhs.length() << ")";
+	rhs.display(os);
+	return os;
+}
+istream& operator>>(istream& is,  Triangular& rhs) {
+	char c1, c2;
+	int bp, len;
+	is >> c1 >> bp >> c2 >> len;		//(2,6)
+	rhs.set_beg_len(bp, len);			
+	rhs.gen_elems(bp, len);		
+	return is;
+}
+
+/*****************************测试operator<<函数 -begin******************************************/
+void test07() {
+	Triangular tri(6, 3);
+	//tri.gen_elems(3, 6);	//生成起始为3，长度为6的序列
+	cout << tri << endl;
+
+	Triangular tri2;
+	cin >> tri2;
+	cout << tri2 << endl;
+}
+/*****************************测试operator<<函数 -end******************************************/

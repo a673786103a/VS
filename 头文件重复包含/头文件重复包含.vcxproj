@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{CA92480C-38AD-4D0F-871D-34DD55D5C692}</ProjectGuid>
-    <RootNamespace>第四章基于对象的编程风格</RootNamespace>
+    <ProjectGuid>{DBAEEDAA-642F-4269-9668-95C17F01BE49}</ProjectGuid>
+    <RootNamespace>头文件重复包含</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -115,17 +115,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="LessThan.cpp" />
-    <ClCompile Include="Matrix.cpp" />
-    <ClCompile Include="Triangular.cpp" />
+    <ClCompile Include="A.cpp" />
+    <ClCompile Include="B.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Triangular_iterator.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LessThan.h" />
-    <ClInclude Include="Matrix.h" />
-    <ClInclude Include="Triangular.h" />
-    <ClInclude Include="Triangular_iterator.h" />
+    <ClInclude Include="A.h" />
+    <ClInclude Include="B.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

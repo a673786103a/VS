@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "第三章-泛型编程风�
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "第四章-基于对象的编程风格", "第四章-基于对象的编程风格\第四章-基于对象的编程风格.vcxproj", "{CA92480C-38AD-4D0F-871D-34DD55D5C692}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "头文件重复包含", "头文件重复包含\头文件重复包含.vcxproj", "{DBAEEDAA-642F-4269-9668-95C17F01BE49}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{CA92480C-38AD-4D0F-871D-34DD55D5C692}.Release|x64.Build.0 = Release|x64
 		{CA92480C-38AD-4D0F-871D-34DD55D5C692}.Release|x86.ActiveCfg = Release|Win32
 		{CA92480C-38AD-4D0F-871D-34DD55D5C692}.Release|x86.Build.0 = Release|Win32
+		{DBAEEDAA-642F-4269-9668-95C17F01BE49}.Debug|x64.ActiveCfg = Debug|x64
+		{DBAEEDAA-642F-4269-9668-95C17F01BE49}.Debug|x64.Build.0 = Debug|x64
+		{DBAEEDAA-642F-4269-9668-95C17F01BE49}.Debug|x86.ActiveCfg = Debug|Win32
+		{DBAEEDAA-642F-4269-9668-95C17F01BE49}.Debug|x86.Build.0 = Debug|Win32
+		{DBAEEDAA-642F-4269-9668-95C17F01BE49}.Release|x64.ActiveCfg = Release|x64
+		{DBAEEDAA-642F-4269-9668-95C17F01BE49}.Release|x64.Build.0 = Release|x64
+		{DBAEEDAA-642F-4269-9668-95C17F01BE49}.Release|x86.ActiveCfg = Release|Win32
+		{DBAEEDAA-642F-4269-9668-95C17F01BE49}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
