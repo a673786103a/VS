@@ -11,5 +11,6 @@ public:
 	void test02();	//测试Fibonacci
 	void test03();	//测试display的多态特性
 	void test04_copy_assignment();
+	void test05_typeinfo_RTTI();
 };
 

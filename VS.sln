@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "头文件重复包含", "�
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "第五章-面向对象编程风格", "第五章-面向对象编程风格\第五章-面向对象编程风格.vcxproj", "{F10FEEED-1AE3-45C9-965F-A4C1AD36B454}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "习题5-1", "习题5-1\习题5-1.vcxproj", "{2336A7ED-BF0B-4582-918E-12645DB603A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,6 +53,14 @@ Global
 		{F10FEEED-1AE3-45C9-965F-A4C1AD36B454}.Release|x64.Build.0 = Release|x64
 		{F10FEEED-1AE3-45C9-965F-A4C1AD36B454}.Release|x86.ActiveCfg = Release|Win32
 		{F10FEEED-1AE3-45C9-965F-A4C1AD36B454}.Release|x86.Build.0 = Release|Win32
+		{2336A7ED-BF0B-4582-918E-12645DB603A9}.Debug|x64.ActiveCfg = Debug|x64
+		{2336A7ED-BF0B-4582-918E-12645DB603A9}.Debug|x64.Build.0 = Debug|x64
+		{2336A7ED-BF0B-4582-918E-12645DB603A9}.Debug|x86.ActiveCfg = Debug|Win32
+		{2336A7ED-BF0B-4582-918E-12645DB603A9}.Debug|x86.Build.0 = Debug|Win32
+		{2336A7ED-BF0B-4582-918E-12645DB603A9}.Release|x64.ActiveCfg = Release|x64
+		{2336A7ED-BF0B-4582-918E-12645DB603A9}.Release|x64.Build.0 = Release|x64
+		{2336A7ED-BF0B-4582-918E-12645DB603A9}.Release|x86.ActiveCfg = Release|Win32
+		{2336A7ED-BF0B-4582-918E-12645DB603A9}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,7 @@
 #include "test.h"
 #include "Fibonacci.h"
 #include "Triangular.h"
+#include <typeinfo>
 #define CLS cout << "**********************************************" << endl;
 
 test::test()
@@ -59,12 +60,53 @@ void test::test03() {
 //测试copy和assignment函数
 void test::test04_copy_assignment() {
 	Fibonacci fib(10);
-	Fibonacci fib2 = fib;
+	Fibonacci fib2 = fib;	//调用拷贝构造函数
 	Fibonacci fib3(12);
 	cout << "fib: " << fib <<endl;
 	cout << "fib2: " << fib2 << endl;
 	cout << "fib3: " << fib3 << endl;
 	CLS
-//	fib3 = fib;
-//	cout << "fib3: " << fib3 << endl;
+	fib3 = fib;				//调用赋值运算符重载
+	cout << "fib3: " << fib3 << endl;
+	cout << fib3.what_am_i() << endl;
+	CLS
+
+	Triangular tri(20);
+	Triangular tri2 = tri;
+	Triangular tri3(15);
+	cout << "tri: " << tri << endl;
+	cout << "tri2: " << tri2 << endl;
+	cout << "tri3: " << tri3 << endl;
+	CLS
+	tri3 = tri;
+	cout << "tri3: " << tri3 << endl;
+	cout << tri3.what_am_i() << endl;
+}
+
+void test::test05_typeinfo_RTTI() {
+	//测试typeid  - 返回一个type_info对象
+	num_sequence* n1 = new Fibonacci;
+	cout << typeid(n1).name() << endl;	//class num_sequence * __ptr64
+	cout << typeid(*n1).name() << endl;	//class Fibonacci
+	CLS
+	Triangular tri;
+	n1 = &tri;
+	cout << typeid(n1).name() << endl;	//class num_sequence * __ptr64
+	cout << typeid(*n1).name() << endl;	//class Triangular
+	CLS
+	//OK  n1确实指向某个Triangular对象  
+	if (typeid(*n1) == typeid(Triangular)) {
+		cout << "n1 pointer to Triangular Object " << endl;
+		//static_cast存在风险
+		Triangular* pf = static_cast<Triangular*>(n1);
+		cout << "After convert with static_cast: " << endl;
+		cout << typeid(pf).name() << endl;	//class Triangular * __ptr64
+		cout << typeid(*pf).name() << endl;	//class Triangular
+		cout << "pf: " << pf << endl;		//不会调用重载函数，打印出pf指针变量的值
+	}
+	CLS
+	if (Fibonacci* tri2 = dynamic_cast<Fibonacci*>(n1)) {
+		cout << "yes" << endl;
+	}
+	
 }

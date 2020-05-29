@@ -6,9 +6,23 @@ using namespace std;
 class Fibonacci :public num_sequence{
 public:
 	Fibonacci();
-	Fibonacci(int len,int beg_pos = 1):num_sequence((len > 0 ? len : 1),(beg_pos > 0 ? beg_pos : 1),&_elems){
+	//这个地方，如果基类的构造函数最后一个参数传NULL，程序可以。如果传&_elems，程序会崩溃
+	Fibonacci(int len,int beg_pos = 1):num_sequence((len > 0 ? len : 1),(beg_pos > 0 ? beg_pos : 1),NULL){
 		_length = (len > 0 ? len : 1);
 		_beg_pos = (beg_pos > 0 ? beg_pos : 1);
+	}
+	Fibonacci& operator=(const Fibonacci& rhs) {
+		if (this != &rhs) {
+			//显式调用基类的赋值重载运算符函数
+			num_sequence::operator=(rhs);
+		}
+		this->_length = rhs._length;
+		this->_beg_pos = rhs._beg_pos;	
+		return *this;
+	}
+	Fibonacci(const Fibonacci& rhs):num_sequence(rhs) {
+		this->_length = rhs._length;
+		this->_beg_pos = rhs._beg_pos;
 	}
 	virtual ~Fibonacci();
 	//virtual int elem(int pos) const {
@@ -30,7 +44,7 @@ public:
 	}
 
 protected:
-	virtual void gen_elems(int pos) const {
+	virtual void gen_elems(int pos) const  {
 		//对用户来说，pos从1开始
 		if (_elems.size() == 0) {
 			_elems.push_back(1);

@@ -113,9 +113,7 @@ vector<int> filter(vector<int>& vec, int filter_value, bool(*pred)(int, int)) {
 		if (pred(vec[i], filter_value))//Ïñ²»ÏñÄÇ¸öÎ½´Ê
 			nvec.push_back(vec[i]);		
 	}
-		
 	return nvec;
-	
 }
 void test05() {
 	vector<int> vec = { 1,2,3,4,5,6,7,8 };

@@ -6,10 +6,26 @@ class Triangular :
 	public num_sequence
 {
 public:
-	Triangular() {}
-	Triangular(int len, int beg_pos = 1) :num_sequence((len > 0 ? len : 1), (beg_pos > 0 ? beg_pos : 1), &_elems) {
+	Triangular() {
+		_length = 1;
+		_beg_pos = 1;
+	}
+	Triangular(int len, int beg_pos = 1) :num_sequence((len > 0 ? len : 1), (beg_pos > 0 ? beg_pos : 1),NULL) {
 		_length = (len > 0 ? len : 1);
 		_beg_pos = (beg_pos > 0 ? beg_pos : 1);
+	}
+	Triangular(const Triangular& rhs) :num_sequence(rhs) {
+		this->_length = rhs._length;
+		this->_beg_pos = rhs._beg_pos;
+	}
+	Triangular& operator=(const Triangular& rhs) {
+		if (this != &rhs) {
+			//显式调用基类的赋值重载运算符函数
+			num_sequence::operator=(rhs);
+		}
+		this->_length = rhs._length;
+		this->_beg_pos = rhs._beg_pos;
+		return *this;
 	}
 	virtual ~Triangular(){}
 	//virtual int elem(int pos) const {
