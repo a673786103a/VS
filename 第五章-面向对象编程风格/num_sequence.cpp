@@ -3,12 +3,7 @@
 #include <string>
 
 
-num_sequence::num_sequence()
-{
-}
-num_sequence::~num_sequence()
-{
-}
+
 ostream& operator<< (ostream& os, const num_sequence& ns) {
 	return ns.print(os);
 }

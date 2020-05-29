@@ -6,16 +6,19 @@ class Triangular :
 	public num_sequence
 {
 public:
-	Triangular();
-	Triangular(int len, int beg_pos = 1) :_length(len > 0 ? len : 1), _beg_pos(beg_pos > 0 ? beg_pos : 1) {}
-	virtual ~Triangular();
-	virtual int elem(int pos) const {
-		if (!check_intergrity(pos))
-			return -1;
-		if (pos > _elems.size())
-			Triangular::gen_elems(pos);
-		return _elems[pos - 1];
+	Triangular() {}
+	Triangular(int len, int beg_pos = 1) :num_sequence((len > 0 ? len : 1), (beg_pos > 0 ? beg_pos : 1), &_elems) {
+		_length = (len > 0 ? len : 1);
+		_beg_pos = (beg_pos > 0 ? beg_pos : 1);
 	}
+	virtual ~Triangular(){}
+	//virtual int elem(int pos) const {
+	//	if (!check_intergrity(pos))
+	//		return -1; 
+	//	if (pos > _elems.size())
+	//		gen_elems(pos);
+	//	return _elems[pos - 1];
+	//}
 	virtual string what_am_i() const { return "Triangular"; }
 	virtual ostream& print(ostream& os /* = cout */)const {
 		int pos = _beg_pos - 1;
@@ -27,9 +30,10 @@ public:
 		return os;
 	}
 protected:
+	
 	virtual void gen_elems(int pos) const {
 		if (pos < 0 || pos > _max_elems) {
-			cout << "invliad pos: " << pos << endl;
+			cout << "invalid pos: " << pos << endl;
 			return;
 		}
 		if (_elems.size() < pos) {
